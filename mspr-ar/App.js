@@ -1,28 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput, Image, Button, Alert, Modal, Pressable } from 'react-native';
+import CrmSignup from "./CrmSignup";
+import ShareOnSocialNetwork from "./ShareOnSocialNetwork";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <TextInput
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1
-        }}
-        placeholder="Email"
-      />
-      <StatusBar style="auto" />
-    </View>
-  );
+    const [shareVisible, setShareVisible] = useState(false);
+    return (
+        <View style={styles.centeredView}>
+            { !shareVisible && 
+                <CrmSignup setShareVisible={setShareVisible}></CrmSignup>
+            }
+            { shareVisible && 
+                <ShareOnSocialNetwork />
+            }
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22
+    }
 });
